@@ -1,0 +1,30 @@
+.pre-wrap {
+    white-space: pre-wrap;
+}
+.hidden {
+    display: none;
+}
+.is-invalid {
+    border-color: red;
+}
+.mb-5 {
+    margin-bottom: 3rem;
+}
+.log-entry {
+    display: flex;
+    justify-content: space-between;
+    padding: 1rem;
+    border-bottom: 1px solid #ddd;
+}
+.api-name {
+    font-weight: bold;
+}
+.image-tag {
+    color: #007bff;
+}
+.date {
+    color: gray;
+}
+#view-log-button {
+    margin-bottom: 3rem;
+}
