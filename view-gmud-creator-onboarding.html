@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,6 +8,7 @@
   <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
   <link href="css/style.css" rel="stylesheet">
 </head>
+
 <body>
   <header>
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
@@ -29,30 +31,16 @@
       <div class="form-group">
         <label for="api-name">Nome da aplicação</label>
         <select class="form-control" id="api-name">
-          <option value="advertising">advertising</option>
-          <option value="busca">busca</option>
-          <option value="carrinho">carrinho</option>
-          <option value="central-atendimento">central-atendimento</option>
-          <option value="checkout">checkout</option>
-          <option value="coleta">coleta</option>
-          <option value="conta">conta</option>
-          <option value="conteudo">conteudo</option>
-          <option value="core">core</option>
-          <option value="departamento">departamento</option>
-          <option value="endereco">endereco</option>
-          <option value="engajamento">engajamento</option>
-          <option value="entrega">entrega</option>
-          <option value="favorito">favorito</option>
-          <option value="geolocalizacao">geolocalizacao</option>
-          <option value="marketplace">marketplace</option>
-          <option value="oferta">oferta</option>
-          <option value="parcelamento">parcelamento</option>
-          <option value="pedido">pedido</option>
-          <option value="produto">produto</option>
-          <option value="programa-fidelidade">programa-fidelidade</option>
-          <option value="quickview">quickview</option>
-          <option value="recomendacao">recomendacao</option>
-          <option value="token">token</option>
+          <option value="auth">auth-api</option>
+          <option value="account">account-api</option>
+          <option value="account-2fa">account-2fa-api</option>
+          <option value="account-corp">account-corp-api</option>
+          <option value="captcha">captcha-api</option>
+          <option value="recovery">recovery-api</option>
+          <option value="frontend-account">frontend-account</option>
+          <option value="frontend-login">frontend-login</option>
+          <option value="frontend-recovery">frontend-recovery</option>
+          <option value="frontend-profile">frontend-profile</option>
         </select>
       </div>
       <div class="form-group">
@@ -81,7 +69,7 @@
       </div>
       <div class="form-group">
         <label for="application">Qual a aplicação?</label>
-        <input type="text" class="form-control" id="application" value="vv-viaunica-backend-advertising-api" readonly>
+        <input type="text" class="form-control" id="application" value="vv-auth-api" readonly>
       </div>
       <div class="form-group">
         <label for="impact">Quais os possíveis impactos?</label>
@@ -97,19 +85,24 @@
       <div class="form-group">
         <label for="responsible-select">Responsável pelo rollback</label>
         <select class="form-control" id="responsible-select">
-          <option value="Willian Santa Rosa Rattis, willian.rattis@viavarejo.com.br, (11) 9 8715-2883">Willian Santa Rosa Rattis</option>
-          <option value="Allan Magalhães Silva, allan.msilva@viavarejo.com.br, (11) 9 8561-6407">Allan Magalhães Silva</option>
-          <option value="Mariela de Sousa Freire, mariela.freire@viavarejo.com.br, (11) 9 5214-9761">Mariela de Sousa Freire</option>
-          <option value="Victor Santos Simas Almeida, victor.simas@via.com.br, (11) 99234-8083">Victor Santos Simas Almeida</option>
-          <option value="Renato Mesquita Soares, renato.mesquitya@viavarejo.com.br, (11) 9 5214-9761">Renato Mesquita Soares</option>
-          <option value="Fernando Jose de Oliveira Lima Neto, fernando.jose-ext@casasbahia.com.br, (11) 9 7649-5688">Fernando Jose
-            de Oliveira Lima Neto</option>
+          <option value="Willian Santa Rosa Rattis, willian.rattis@viavarejo.com.br, (11) 9 8715-2883">Willian Santa
+            Rosa Rattis</option>
+          <option value="Mariela de Sousa Freire, mariela.freire@viavarejo.com.br, (11) 9 5214-9761">Mariela de Sousa
+            Freire</option>
+          <option value="Victor Santos Simas Almeida, victor.simas@via.com.br, (11) 99234-8083">Victor Santos Simas
+            Almeida</option>
+          <option value="Marcos Pereira de Lima, marcos.lima@casasbahia.com.br, (34) 9 9942-1988">Marcos Pereira de
+            Lima</option>
+          <option value="Antonio Carlos Zorgetti Junior, antonio.zorgetti@casasbahia.com.br, (11) 9 97186-9182">Antonio
+            Carlos Zorgetti Junior</option>
         </select>
-        <input type="text" class="form-control mt-2" id="responsible" value="Willian Santa Rosa Rattis, willian.rattis@viavarejo.com.br, (11) 9 8715-2883" readonly>
+        <input type="text" class="form-control mt-2" id="responsible"
+          value="Willian Santa Rosa Rattis, willian.rattis@viavarejo.com.br, (11) 9 8715-2883" readonly>
       </div>
       <div class="form-group">
         <label for="validation">Plano de validação do ambiente</label>
-        <textarea class="form-control" id="validation" rows="3" readonly>Dynatrace, Grafana (Endpoints e CircuitBreaker), navegação do App</textarea>
+        <textarea class="form-control" id="validation" rows="3"
+          readonly>Dynatrace, Grafana (Endpoints e CircuitBreaker), navegação do App</textarea>
       </div>
       <div class="form-group">
         <label for="tester">Responsável pelos testes após deploy</label>
@@ -123,11 +116,14 @@
         <label for="implementation-time">Hora da implementação</label>
         <input type="time" class="form-control" id="implementation-time" step="3600">
       </div>
-      <button type="button" class="btn btn-primary mb-5" id="generate-button" onclick="generateDocumentation()">Gerar Documentação</button>
+      <button type="button" class="btn btn-primary mb-5" id="generate-button" onclick="generateDocumentation()">Gerar
+        Documentação</button>
     </form>
-    <a id="view-log-button" href="view-gmud-log.html" target="_blank" class="btn btn-secondary mt-3">Log Implementações</a>
+    <a id="view-log-button" href="view-gmud-log.html" target="_blank" class="btn btn-secondary mt-3">Log
+      Implementações</a>
 
-    <div class="modal fade" id="documentationModal" tabindex="-1" role="dialog" aria-labelledby="documentationModalLabel" aria-hidden="true">
+    <div class="modal fade" id="documentationModal" tabindex="-1" role="dialog"
+      aria-labelledby="documentationModalLabel" aria-hidden="true">
       <div class="modal-dialog modal-lg" role="document">
         <div class="modal-content">
           <div class="modal-header">
@@ -151,6 +147,7 @@
   <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-  <script src="js/script.js"></script>
+  <script src="js/script-onboarding.js"></script>
 </body>
+
 </html>
