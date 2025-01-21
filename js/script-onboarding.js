@@ -1,4 +1,4 @@
-document.addEventListener('DOMContentLoaded', function() {
+document.addEventListener('DOMContentLoaded', function () {
     const dateInput = document.getElementById('implementation-date');
     const timeInput = document.getElementById('implementation-time');
     const apiNameSelect = document.getElementById('api-name');
@@ -16,122 +16,123 @@ document.addEventListener('DOMContentLoaded', function() {
     const responsibleSelect = document.getElementById('responsible-select');
     const responsibleInput = document.getElementById('responsible');
     const testerInput = document.getElementById('tester');
-
+  
     const now = new Date();
     const day = String(now.getDate()).padStart(2, '0');
     const month = String(now.getMonth() + 1).padStart(2, '0');
     const year = now.getFullYear();
     const formattedDate = `${year}-${month}-${day}`;
-
+  
     dateInput.value = formattedDate;
     timeInput.value = '14:00';
-
-    apiNameSelect.addEventListener('change', function() {
-        const selectedApiName = apiNameSelect.value;
-        applicationInput.value = `vv-viaunica-backend-${selectedApiName}-api`;
-        validateForm();
+  
+    apiNameSelect.addEventListener('change', function () {
+      const selectedApiName = apiNameSelect.value;
+  
+      if (selectedApiName.startsWith('frontend')) {
+        applicationInput.value = `vv-cliente-${selectedApiName}`;
+      } else {
+        applicationInput.value = `vv-${selectedApiName.endsWith('-api') ? selectedApiName : `${selectedApiName}-api`}`;
+      }
+  
+      validateForm();
     });
-
-    impactSelect.addEventListener('change', function() {
-        if (impactSelect.value === 'com-impacto') {
-            impactDescriptionContainer.classList.remove('hidden');
-        } else {
-            impactDescriptionContainer.classList.add('hidden');
-            impactDescription.value = '';
-        }
-        validateForm();
+  
+    impactSelect.addEventListener('change', function () {
+      if (impactSelect.value === 'com-impacto') {
+        impactDescriptionContainer.classList.remove('hidden');
+      } else {
+        impactDescriptionContainer.classList.add('hidden');
+        impactDescription.value = '';
+      }
+      validateForm();
     });
-
+  
     impactDescription.addEventListener('input', validateForm);
-
-    responsibleSelect.addEventListener('change', function() {
-        const selectedOption = responsibleSelect.options[responsibleSelect.selectedIndex];
-        responsibleInput.value = selectedOption.value;
-        testerInput.value = selectedOption.text;
+  
+    responsibleSelect.addEventListener('change', function () {
+      const selectedOption = responsibleSelect.options[responsibleSelect.selectedIndex];
+      responsibleInput.value = selectedOption.value;
+      testerInput.value = selectedOption.text;
     });
-
+  
     function validateChangeNumbers() {
-        const chgEx = chgExInput.value.trim();
-        const chgPf = chgPfInput.value.trim();
-        const chgCb = chgCbInput.value.trim();
-
-        const duplicateFields = [];
-
-        if (chgEx && (chgEx === chgPf || chgEx === chgCb)) {
-            duplicateFields.push(chgExInput);
-        }
-        if (chgPf && (chgPf === chgEx || chgPf === chgCb)) {
-            duplicateFields.push(chgPfInput);
-        }
-        if (chgCb && (chgCb === chgEx || chgCb === chgPf)) {
-            duplicateFields.push(chgCbInput);
-        }
-
-        [chgExInput, chgPfInput, chgCbInput].forEach(input => {
-            if (duplicateFields.includes(input)) {
-                input.classList.add('is-invalid');
-            } else {
-                input.classList.remove('is-invalid');
-            }
-        });
-
-        validateForm();
-    }
-
-    function validateImageTag() {
-        const imageTag = imageTagInput.value.trim();
-        const imageTagPattern = /^\d+\.\d+\.\d+-\d+$/;
-
-        if (imageTagPattern.test(imageTag)) {
-            imageTagInput.classList.remove('is-invalid');
+      const chgEx = chgExInput.value.trim();
+      const chgPf = chgPfInput.value.trim();
+      const chgCb = chgCbInput.value.trim();
+  
+      const duplicateFields = [];
+  
+      if (chgEx && (chgEx === chgPf || chgEx === chgCb)) {
+        duplicateFields.push(chgExInput);
+      }
+      if (chgPf && (chgPf === chgEx || chgPf === chgCb)) {
+        duplicateFields.push(chgPfInput);
+      }
+      if (chgCb && (chgCb === chgEx || chgCb === chgPf)) {
+        duplicateFields.push(chgCbInput);
+      }
+  
+      [chgExInput, chgPfInput, chgCbInput].forEach((input) => {
+        if (duplicateFields.includes(input)) {
+          input.classList.add('is-invalid');
         } else {
-            imageTagInput.classList.add('is-invalid');
+          input.classList.remove('is-invalid');
         }
-
-        validateForm();
+      });
+  
+      validateForm();
     }
-
+  
+    function validateImageTag() {
+      const imageTag = imageTagInput.value.trim();
+      const imageTagPattern = /^\d+\.\d+\.\d+-\d+$/;
+  
+      if (imageTagPattern.test(imageTag)) {
+        imageTagInput.classList.remove('is-invalid');
+      } else {
+        imageTagInput.classList.add('is-invalid');
+      }
+  
+      validateForm();
+    }
+  
     function validateForm() {
-        const isChangeNumbersValid = !chgExInput.classList.contains('is-invalid') &&
-                                     !chgPfInput.classList.contains('is-invalid') &&
-                                     !chgCbInput.classList.contains('is-invalid');
-        const isImageTagValid = !imageTagInput.classList.contains('is-invalid');
-        const isImpactDescriptionValid = impactSelect.value === 'sem-impacto' || (impactSelect.value === 'com-impacto' && impactDescription.value.trim() !== '');
-        const areAllFieldsFilled = descriptionInput.value.trim() !== '' &&
-                                   chgExInput.value.trim() !== '' &&
-                                   chgPfInput.value.trim() !== '' &&
-                                   chgCbInput.value.trim() !== '' &&
-                                   imageTagInput.value.trim() !== '' &&
-                                   objectiveInput.value.trim() !== '';
-
-        generateButton.disabled = !(isChangeNumbersValid && isImageTagValid && isImpactDescriptionValid && areAllFieldsFilled);
+      const isChangeNumbersValid =
+        !chgExInput.classList.contains('is-invalid') &&
+        !chgPfInput.classList.contains('is-invalid') &&
+        !chgCbInput.classList.contains('is-invalid');
+      const isImageTagValid = !imageTagInput.classList.contains('is-invalid');
+      const isImpactDescriptionValid =
+        impactSelect.value === 'sem-impacto' ||
+        (impactSelect.value === 'com-impacto' && impactDescription.value.trim() !== '');
+      const areAllFieldsFilled =
+        descriptionInput.value.trim() !== '' &&
+        chgExInput.value.trim() !== '' &&
+        chgPfInput.value.trim() !== '' &&
+        chgCbInput.value.trim() !== '' &&
+        imageTagInput.value.trim() !== '' &&
+        objectiveInput.value.trim() !== '';
+  
+      generateButton.disabled =
+        !(isChangeNumbersValid && isImageTagValid && isImpactDescriptionValid && areAllFieldsFilled);
     }
-
-    [chgExInput, chgPfInput, chgCbInput, descriptionInput, objectiveInput, imageTagInput].forEach(input => {
-        input.addEventListener('input', validateForm);
+  
+    [chgExInput, chgPfInput, chgCbInput, descriptionInput, objectiveInput, imageTagInput].forEach((input) => {
+      input.addEventListener('input', validateForm);
     });
-
-    [chgExInput, chgPfInput, chgCbInput].forEach(input => {
-        input.addEventListener('input', validateChangeNumbers);
+  
+    [chgExInput, chgPfInput, chgCbInput].forEach((input) => {
+      input.addEventListener('input', validateChangeNumbers);
     });
-
+  
     imageTagInput.addEventListener('input', validateImageTag);
-
+  
     validateForm();
-});
-
-function formatDate(dateString) {
-    const [year, month, day] = dateString.split('-');
-    return `${day}/${month}/${year}`;
-}
-
-function capitalizeFirstLetter(string) {
-    return string.charAt(0).toUpperCase() + string.slice(1);
-}
-
-function generateDocumentation() {
+  });
+  
+  function generateDocumentation() {
     const apiName = document.getElementById('api-name').value;
-    const capitalizedApiName = capitalizeFirstLetter(apiName);
     const description = document.getElementById('description').value.trim();
     const chgEx = document.getElementById('chg-ex').value.trim();
     const chgPf = document.getElementById('chg-pf').value.trim();
@@ -144,13 +145,15 @@ function generateDocumentation() {
     const implementationTime = document.getElementById('implementation-time').value;
     const responsible = document.getElementById('responsible').value.trim();
 
-    const formattedDate = formatDate(implementationDate);
-    const fullImplementationDate = implementationDate && implementationTime ? `${formattedDate} - ${implementationTime}` : '';
+    const formattedDate = implementationDate.split('-').reverse().join('/');
+    const fullImplementationDate = `${formattedDate} - ${implementationTime}`;
 
     const hours = parseInt(implementationTime.split(':')[0], 10);
     const greeting = hours < 12 ? 'Bom dia, pessoal.' : 'Boa tarde, pessoal.';
 
     const impactText = impact === 'com-impacto' ? impactDescription : 'Sem impacto';
+
+    const application = document.getElementById('application').value;
 
     const documentation = `
 ${greeting}
@@ -159,15 +162,15 @@ Descrição
 ${description}
 
 Número das mudanças
-${chgEx} - [${capitalizedApiName}] vv-viaunica-backend-${apiName}-api (ex) - ${imageTag}
-${chgPf} - [${capitalizedApiName}] vv-viaunica-backend-${apiName}-api (pf) - ${imageTag}
-${chgCb} - [${capitalizedApiName}] vv-viaunica-backend-${apiName}-api (cb) - ${imageTag}
+${chgEx} - [${apiName}] ${application} (ex) - ${imageTag}
+${chgPf} - [${apiName}] ${application} (pf) - ${imageTag}
+${chgCb} - [${apiName}] ${application} (cb) - ${imageTag}
 
 Qual o objetivo da mudança?
 ${objective}
 
 Qual a aplicação?
-vv-viaunica-backend-${apiName}-api
+${application}
 
 Quais os possíveis impactos?
 ${impactText}
@@ -195,25 +198,22 @@ ${fullImplementationDate}
 
 function copyToClipboard() {
     const output = document.getElementById('output');
-    const modalContent = document.querySelector('.modal-content'); // Seleciona o modal
-  
+    const modalContent = document.querySelector('.modal-content');
+
     if (output) {
-      navigator.clipboard.writeText(output.textContent)
-        .then(() => {
-          // Adiciona a classe blink para o efeito de piscar
-          modalContent.classList.add('blink');
-          setTimeout(() => {
-            modalContent.classList.remove('blink'); // Remove a classe após 300ms
-          }, 300);
-        })
-        .catch(err => {
-          console.error('Erro ao copiar a documentação: ', err);
-        });
+        navigator.clipboard.writeText(output.textContent)
+            .then(() => {
+                modalContent.classList.add('blink');
+                setTimeout(() => {
+                    modalContent.classList.remove('blink');
+                }, 300);
+            })
+            .catch(err => {
+                console.error('Erro ao copiar a documentação: ', err);
+            });
     }
-  
     saveToLog();
-  }
-  
+}
 
 function saveToLog() {
     const apiName = document.getElementById('api-name').value;
@@ -253,12 +253,16 @@ function updateLogHTML() {
     document.getElementById('log-content').innerHTML = logContent;
 }
 
+function formatDate(dateString) {
+    const [year, month, day] = dateString.split('-');
+    return `${day}/${month}/${year}`;
+}
+
 document.addEventListener('DOMContentLoaded', () => {
     const currentPage = window.location.pathname.split('/').pop();
     const navLinks = document.querySelectorAll('.nav-link');
   
     navLinks.forEach(link => {
-      // Verifica se o link corresponde à página atual
       if (link.getAttribute('href') === currentPage) {
         link.classList.add('active');
       } else {
