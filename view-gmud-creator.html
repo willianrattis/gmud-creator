@@ -6,8 +6,11 @@
   <title>Formulário GMUD</title>
   <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
   <link href="css/style.css" rel="stylesheet">
+  <link href="css/dark-mode.css" rel="stylesheet">
 </head>
+
 <body>
+
   <header>
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
       <a class="navbar-brand" href="#">GMUD</a>
@@ -23,6 +26,7 @@
       </div>
     </nav>
   </header>
+
   <div class="container mt-5">
     <h2>Formulário GMUD</h2>
     <form>
@@ -148,9 +152,19 @@
     </div>
   </div>
 
+  <footer class="footer mt-auto py-3 bg-light">
+    <div class="container text-center">
+      <button id="toggle-mode" class="btn btn-outline-secondary">
+        <span id="mode-icon" class="mode-icon">🌙</span>
+        <span id="mode-text">Dark Mode</span>
+      </button>
+    </div>
+  </footer>
+
   <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
   <script src="js/script.js"></script>
+  <script src="js/dark-mode.js"></script>
 </body>
 </html>
