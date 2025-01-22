@@ -6,6 +6,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Formulário GMUD</title>
   <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
   <link href="css/style.css" rel="stylesheet">
   <link rel="stylesheet" href="css/dark-mode.css">
 </head>
@@ -144,15 +145,20 @@
       </div>
     </div>
   </div>
-  <footer class="footer mt-auto py-3 bg-light">
+  <footer class="footer mt-auto py-3 bg-light d-flex justify-content-between">
     <div class="container text-center">
-      <button id="toggle-mode" class="btn btn-outline-secondary">
-        <span id="mode-icon" class="mode-icon">🌙</span>
-        <span id="mode-text">Dark Mode</span>
-      </button>
+        <button id="toggle-mode" class="btn btn-outline-secondary">
+          <span id="mode-icon" class="mode-icon">🌙</span>
+          <span id="mode-text">Dark Mode</span>
+        </button>
     </div>
-  </footer>
-  
+    <div class="github-link">
+      <a href="https://github.com/willianrattis" target="_blank" class="github-icon" aria-label="GitHub">
+        <i class="fab fa-github"></i>
+      </a>
+    </div>
+</footer>
+
   
   <script src="js/dark-mode.js"></script>
 
