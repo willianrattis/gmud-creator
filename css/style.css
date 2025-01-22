@@ -59,3 +59,36 @@
     /* Azul escuro para indicar seleção */
     text-decoration: underline;
 }
+
+.footer {
+    position: relative;
+    padding: 1rem;
+}
+
+.github-link {
+    position: absolute;
+    right: 20px;
+    bottom: 15px;
+}
+
+.github-link a {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 40px;
+    height: 40px;
+    background-color: #21262d;
+    border-radius: 50%;
+    color: #c9d1d9;
+    text-decoration: none;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.github-link a:hover {
+    background-color: #58a6ff;
+    color: #ffffff;
+}
+
+.github-link a .fab {
+    font-size: 1.5rem;
+}
